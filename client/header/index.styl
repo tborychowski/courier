@@ -1,0 +1,31 @@
+@import "lib"
+
+
+.header
+	background dark-color-bg3
+
+	position sticky
+	top 0
+	height 64
+	padding 0 20
+	display flex
+	align-items center
+	justify-content space-between
+
+	h1
+		font-weight 400
+		font-family 'Courier New', Courier, monospace
+
+	input
+	.select-wrap
+		width 200
+		opacity 0
+
+	&:hover
+		input
+		.select-wrap
+			opacity 1
+
+	form.loading
+		opacity 0.5
+		pointer-events none

@@ -1,0 +1,10 @@
+node_modules/
+_stuff/
+public/
+logs/
+
+
+.DS_Store
+*.log
+*.db
+.env

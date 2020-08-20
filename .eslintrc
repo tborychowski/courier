@@ -1,0 +1,37 @@
+{
+	"extends": "eslint:recommended",
+	"env": {
+		"es6": true,
+		"node": true,
+		"browser": true
+	},
+	"parserOptions": {
+		"sourceType": "module",
+		"ecmaVersion": 2019
+	},
+    "plugins": [ "svelte3" ],
+    "overrides": [
+		{
+            "files": "*.svelte",
+            "processor": "svelte3/svelte3"
+		}
+	],
+	"rules": {
+		"brace-style": ["error", "stroustrup", { "allowSingleLine": true }],
+		"indent": [2, "tab"],
+		"quotes": [2, "single", "avoid-escape"],
+		"semi": [2, "always"],
+		"func-call-spacing": ["error", "never"],
+		"space-before-function-paren": ["error", "always"],
+		"newline-per-chained-call": ["error", { "ignoreChainWithDepth": 3 }],
+		"no-undef": 2,
+		"no-mixed-spaces-and-tabs": 2,
+		"no-unused-vars": 1,
+		"no-trailing-spaces": 2,
+		"no-shadow": 2,
+		"eol-last": 1,
+		"no-console": 0,
+		"comma-dangle": 0,
+		"no-cond-assign": 0
+	}
+}
