@@ -8,4 +8,5 @@ services:
     ports:
       - "3000:3000"
     environment:
+      - NODE_ENV=production
       - TOKEN=093284923048sdkfjsdlfkj
