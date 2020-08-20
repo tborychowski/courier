@@ -20,14 +20,14 @@ function catchError (e, res) {
 
 // get list of couriers (cache 1 day)
 api.get('/courier', (req, res) => {
-	get('/couriers/list', {}, 86400 * 10)
+	get('/couriers/list', {}, 86400)
 		.then(({code, data}) => res.status(code).json(data));
 });
 
 
 // get list of parcels (cache 30 seconds)
 api.get('/trackings', (req, res) => {
-	get('/trackings?pageId=1&limit=100', AUTH, 1 * 1000)
+	get('/trackings?pageId=1&limit=100', AUTH)
 		.then(({code, data}) => res.status(code).json(data))
 		.catch(e => catchError(e, res));
 });

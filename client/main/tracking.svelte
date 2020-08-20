@@ -41,8 +41,6 @@
 
 
 <script>
-//https://www.anpost.com/Post-Parcels/Track/History?item=
-
 
 import {EVENT, trackings, couriers} from '../lib';
 export let data = {};
