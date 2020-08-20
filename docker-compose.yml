@@ -1,0 +1,11 @@
+---
+version: '3.7'
+services:
+  courier:
+    container_name: courier
+    image: tborychowski/courier
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - TOKEN=093284923048sdkfjsdlfkj

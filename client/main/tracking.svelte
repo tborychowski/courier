@@ -15,11 +15,15 @@
 	<details>
   		<summary>Checkpoints</summary>
 		<table class="checkpoints">
-		<thead><tr><td>Date</td><td>Location</td><td>Status</td></tr></thead>
+		<thead><tr>
+			<td class="col-date">Date</td>
+			<td class="col-location">Location</td>
+			<td class="col-status">Status</td>
+		</tr></thead>
 		<tbody>
 			{#each data.checkpoints as checkpoint}
 				<tr>
-					<td>{checkpoint.time}</td>
+					<td>{(checkpoint.time || '').replace('T', ' ')}</td>
 					<td>{checkpoint.location}</td>
 					<td>{checkpoint.msg}</td>
 				</tr>
