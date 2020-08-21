@@ -1,0 +1,105 @@
+@import "lib"
+
+.tracking
+	background dark-color-bg3
+	padding 20
+	margin 0 0 1
+	position relative
+	overflow hidden
+
+	header
+	footer
+		display flex
+		align-items center
+		justify-content flex-start
+
+	footer
+		align-items flex-start
+
+		.flex-spacer
+			max-width 50px
+			flex 1
+
+	.sub-header
+		margin 10 0 0
+		table
+			border-collapse collapse
+			color dark-color-text0
+			td
+				padding 5
+			.highlight
+				color dark-color-text2
+
+	h2
+		font-weight 400
+		font-size 18px
+		text-transform uppercase
+
+	.details
+		margin 20 20 0 0
+		flex 1
+		cursor pointer
+		color dark-color-text0
+
+	em
+		font-style normal
+		color dark-color-accent
+
+	.tracking-number
+		color dark-color-text0
+		margin 0 10
+
+		a
+			color inherit
+			position relative
+
+			&:after
+				content '↗'
+				position absolute
+				top 0
+				right -12
+				font-size 9px
+
+	.status
+		color dark-color-text0
+		margin 0 10
+		background dark-color-bg2
+		padding 6 10 5
+		border-radius 10
+
+
+	.logo
+		size 40
+		font-size 12px
+		background #fff
+		color #000
+		display inline-flex
+		align-items center
+		text-align center
+		margin 0 0 0 0
+		overflow hidden
+		border-radius 25px
+		border 1px solid dark-color-bg1
+
+	.checkpoints
+		width 100%
+		margin 10 0
+		border-collapse collapse
+		color dark-color-text2
+
+		td
+			border 1px solid dark-color-bg1
+			padding 5 10
+
+		thead td
+			font-weight 600
+			background dark-color-bg2
+			padding 10
+
+
+		.col-date
+			width 160
+		.col-location
+			width 200
+		.col-status
+			width auto

@@ -16,7 +16,7 @@
 <script>
 import {onMount} from 'svelte';
 import {EVENT, trackings} from '../lib';
-import Tracking from './tracking';
+import Tracking from '../tracking';
 let loading = false;
 let firstTimeLoaded = false;
 
