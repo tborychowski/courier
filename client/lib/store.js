@@ -11,7 +11,7 @@ function trackingsStore () {
 	return {
 		subscribe,
 		load: () => api.get('/trackings')
-			.then(res => res.map(remapFields))
+			.then(res => Array.isArray(res) ? res.map(remapFields) : [])
 			.then(sortByDate)
 			.then(set),
 		add: (data) => api.post('/trackings', data).then(res => {
@@ -25,6 +25,7 @@ function trackingsStore () {
 
 api.get('/courier').then(res => {
 	if (!res) return;
+	res.sort((a, b) => a.title.localeCompare(b.title));
 	const _couriers = {};
 	res.forEach(c => _couriers[c.slug] = c);
 	couriers.set(_couriers);
@@ -47,27 +48,46 @@ function remapFields (data) {
 	_data.sortField = +(_data.pickup_date ? new Date(_data.pickup_date) : new Date());
 
 	if (data.trackings) {
-		if (data.trackings.address) {
-			const _from = data.trackings.address.ship_from;
-			const _to = data.trackings.address.ship_to;
+		// if (data.trackings.address) {
+		// 	const _from = data.trackings.address.ship_from;
+		// 	const _to = data.trackings.address.ship_to;
 
-			if (_from) {
-				_data.addrFrom = [_from.address_line1, _from.city, _from.country_name]
-					.filter(s => s && s.length)
-					.join(', ');
-			}
-			if (_to) {
-				_data.addrTo = [_to.address_line1, _to.city, _to.country_name]
-					.filter(s => s && s.length)
-					.join(', ');
-			}
-		}
+		// 	if (_from) {
+		// 		_data.addrFrom = [_from.address_line1, _from.city, _from.country_name]
+		// 			.filter(s => s && s.length)
+		// 			.join(', ');
+		// 	}
+		// 	if (_to) {
+		// 		_data.addrTo = [_to.address_line1, _to.city, _to.country_name]
+		// 			.filter(s => s && s.length)
+		// 			.join(', ');
+		// 	}
+		// }
+
+		const pickupDate = new Date(data.trackings.shipment_pickup_date);
+		_data.pickupDate = pickupDate.toDateString() + ', ' + pickupDate.toLocaleTimeString();
+		_data.pickupAgo = Math.round((+new Date() - +pickupDate) / 86400000);
+		_data.pickupAgo += ` day${_data.pickupAgo === 1 ? '' : 's'} ago`;
 
 		if (data.trackings.expected_delivery) {
 			const d = new Date(data.trackings.expected_delivery);
 			_data.expected = d.toDateString();
-			const _expectedIn = Math.ceil((+d - +new Date()) / 86400000);
-			if (_expectedIn > 0) _data.expectedIn = _expectedIn;
+
+			const today = new Date();
+			const todayIso = today.toISOString().substr(0, 10);
+			if (todayIso === data.trackings.expected_delivery) _data.expectedIn = 'today';
+			else {
+				const _expectedIn = Math.ceil((+d - +today) / 86400000);
+				if (_expectedIn > 1) _data.expectedIn = 'in ' + _expectedIn + ' days';
+				else if (_expectedIn === 1) _data.expectedIn = 'tomorrow';
+				else if (_expectedIn === 0) _data.expectedIn = 'today';
+				else if (_expectedIn < 0) _data.expectedIn = 'delivered';
+				else _data.expectedIn = '?';
+			}
+		}
+		else {
+			_data.expected = '';
+			_data.expectedIn = '?';
 		}
 
 		if (data.trackings.checkpoints) {

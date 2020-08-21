@@ -4,8 +4,8 @@ button
 	font inherit
 	display inline-block
 	padding 2 15 0
-	min-width 34px
-	min-height 34px
+	min-width 32px
+	min-height 32px
 	margin-bottom 0
 	font 15/1.4
 	font-weight 400
@@ -61,20 +61,21 @@ button
 			background darken(color-danger, 15%)
 
 
+	&.text-icon
+		font-size 20px
+		padding 0
 
 
 	&.icon
-		position absolute
 		height 32px
 		width 32px
-		border transparent
+		border dark-color-bg2
 		background none
 		text-align center
 		cursor pointer
 		z-index 10
 		color dark-color-text0
 		transition color .2s
-		display inline-block
 
 		&:focus
 			border-color dark-color-accent
@@ -83,6 +84,8 @@ button
 
 		&:hover
 			color dark-color-text2
+		&:active
+			background dark-color-bg2
 
 
 .flex-spacer

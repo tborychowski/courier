@@ -1,6 +1,5 @@
 # courier
 A self-hosted parcel tracker.
-
 Heavily inspired by [ParcelPony](https://github.com/fireshaper/parcelpony).
 
 ## Features
@@ -8,11 +7,17 @@ Heavily inspired by [ParcelPony](https://github.com/fireshaper/parcelpony).
 - docker & docker-compose
 - track almost any courier in the world
 
-## Prerequisities
-- Register at [trackinghive](https://my.trackinghive.com/) and get the API token (In Settings/API Keys)
+## TODO
+- [ ] edit tracking?
+
+
+
 
 ## Setup
+### Prerequisities
+- Register at [trackinghive](https://my.trackinghive.com/) and get the API token (In Settings/API Keys)
 
+### Run
 Use this `docker-compose.yml`:
 ```yml
 ---
