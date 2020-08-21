@@ -5,6 +5,7 @@
 		<input type="text" bind:value="{title}" placeholder="title (optional)">
 		<div class="select-wrap">
 			<select bind:value="{courier}">
+				<option value="" disabled>Select Courier</option>
 				{#each Object.values($couriers) as cur}
 					<option value="{cur.slug}">{cur.title}</option>
 				{/each}
@@ -23,13 +24,11 @@ let title = '';
 let courier = '';
 let loading = false;
 
-const resetCourier = () => courier = Object.values($couriers)[0].slug;
-
 
 function add () {
 	if (loading) return;
-	if (!courier) resetCourier();
-	if (!courier || !tracking_number) return alert('Enter tracking number!');
+	if (!tracking_number) return alert('Enter tracking number.');
+	if (!courier) return alert('Select Courier.');
 	loading = true;
 	trackings
 		.add({ tracking_number, title, courier })
@@ -38,7 +37,7 @@ function add () {
 			tracking_number = '';
 			title = '';
 			loading = false;
-			resetCourier();
+			courier = '';
 		});
 }
 
