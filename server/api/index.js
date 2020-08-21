@@ -27,7 +27,7 @@ api.get('/courier', (req, res) => {
 
 // get list of parcels (cache 30 seconds)
 api.get('/trackings', (req, res) => {
-	get('/trackings?pageId=1&limit=100', AUTH)
+	get('/trackings?pageId=1&limit=100', AUTH, 30)
 		.then(({code, data}) => res.status(code).json(data))
 		.catch(e => catchError(e, res));
 });

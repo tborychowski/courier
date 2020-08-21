@@ -1,5 +1,6 @@
 <header class="header">
-	<h1>Courier</h1>
+	<img src="icon.png" class="logo" alt="Logo"/>
+	<h1>courier</h1>
 	<form on:submit|preventDefault="{add}" class:loading>
 		<input type="text" bind:value="{tracking_number}" placeholder="tracking number">
 		<input type="text" bind:value="{title}" placeholder="title (optional)">

@@ -1,13 +1,13 @@
 <main class="main">
 	{#if loading}
-		Loading...
+		<div class="placeholder-text">Loading...</div>
 	{:else}
 		{#if $trackings && $trackings.length}
 			{#each $trackings as tracking}
 				<Tracking data="{tracking}"/>
 			{/each}
 		{:else if firstTimeLoaded}
-			No trackings!
+			<div class="placeholder-text">No trackings found.</div>
 		{/if}
 	{/if}
 </main>

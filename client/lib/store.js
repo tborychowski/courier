@@ -51,7 +51,6 @@ function remapFields (data) {
 		// if (data.trackings.address) {
 		// 	const _from = data.trackings.address.ship_from;
 		// 	const _to = data.trackings.address.ship_to;
-
 		// 	if (_from) {
 		// 		_data.addrFrom = [_from.address_line1, _from.city, _from.country_name]
 		// 			.filter(s => s && s.length)
@@ -64,10 +63,16 @@ function remapFields (data) {
 		// 	}
 		// }
 
-		const pickupDate = new Date(data.trackings.shipment_pickup_date);
-		_data.pickupDate = pickupDate.toDateString() + ', ' + pickupDate.toLocaleTimeString();
-		_data.pickupAgo = Math.round((+new Date() - +pickupDate) / 86400000);
-		_data.pickupAgo += ` day${_data.pickupAgo === 1 ? '' : 's'} ago`;
+		if (data.trackings.shipment_pickup_date) {
+			const pickupDate = new Date(data.trackings.shipment_pickup_date);
+			_data.pickupDate = pickupDate.toDateString() + ', ' + pickupDate.toLocaleTimeString();
+			_data.pickupAgo = data.trackings.delivery_time;
+			_data.pickupAgo += ` day${_data.pickupAgo === 1 ? '' : 's'} ago`;
+		}
+		else {
+			_data.pickupDate = '';
+			_data.pickupAgo = '?';
+		}
 
 		if (data.trackings.expected_delivery) {
 			const d = new Date(data.trackings.expected_delivery);
