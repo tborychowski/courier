@@ -12,7 +12,7 @@
 				{/each}
 			</select>
 		</div>
-		<button class="btn success text-icon" title="Add tracking">&plus;</button>
+		<button class="btn success" title="Add tracking">Add</button>
 	</form>
 </header>
 

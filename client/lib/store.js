@@ -28,6 +28,7 @@ api.get('/courier').then(res => {
 	res.sort((a, b) => a.title.localeCompare(b.title));
 	const _couriers = {};
 	res.forEach(c => _couriers[c.slug] = c);
+	_couriers['an-post'].logo = _couriers['an-post'].logo || 'courier-anpost.png';
 	couriers.set(_couriers);
 });
 
@@ -86,7 +87,7 @@ function remapFields (data) {
 				if (_expectedIn > 1) _data.expectedIn = 'in ' + _expectedIn + ' days';
 				else if (_expectedIn === 1) _data.expectedIn = 'tomorrow';
 				else if (_expectedIn === 0) _data.expectedIn = 'today';
-				else if (_expectedIn < 0) _data.expectedIn = 'delivered';
+				else if (_expectedIn < 0) _data.expectedIn = 'delayed';
 				else _data.expectedIn = '?';
 			}
 		}

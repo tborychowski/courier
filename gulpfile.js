@@ -75,7 +75,6 @@ function css () {
 	const sourcemap = require('gulp-sourcemaps');
 	const stylus = require('gulp-stylus');
 	const concat = require('gulp-concat');
-
 	return src(['client/**/*.styl'])
 		.pipe(isProd ? noop() : sourcemap.init())
 		.pipe(stylus({ paths: ['client/ui-style'], compress: isProd, 'include css': true }))

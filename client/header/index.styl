@@ -24,33 +24,19 @@
 
 	input
 	.select-wrap
-		width 200
-		opacity 0
-		margin-right 5
-		margin-bottom 5
-
-	&:hover
-		input
-		.select-wrap
-			opacity 1
+		flex 1
+		margin-right 6
+		min-width 50
 
 	form
 		display flex
 		align-items center
 		justify-content space-between
 		flex-wrap wrap
+		padding 0 0 10
+		min-width 100%
 
 
 	form.loading
 		opacity 0.5
 		pointer-events none
-
-
-
-@media only screen and (max-device-width: 500px)
-	.header
-		form
-			min-width 100%
-		input
-		.select-wrap
-			opacity 1

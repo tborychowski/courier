@@ -71,7 +71,7 @@
 
 	.status
 		color dark-color-text0
-		margin 0 10
+		margin 0 10 0 0
 		background dark-color-bg2
 		padding 6 10 5
 		border-radius 10
@@ -86,7 +86,7 @@
 		display inline-flex
 		align-items center
 		text-align center
-		margin 0 0 0 0
+		margin 0 10 0 0
 		overflow hidden
 		border-radius 25px
 		border 1px solid dark-color-bg1
@@ -119,10 +119,14 @@
 
 @media only screen and (max-device-width: 500px)
 	.tracking
+		.status
+			position absolute
+			right 5
+			top 30
 		.tracking-number
 			display block
 			width 100%
-			margin 20 0
+			margin 20 0 0 5
 
 			&:before
 				content: 'Tracking number: '
