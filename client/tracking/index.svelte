@@ -8,7 +8,11 @@
 	</header>
 	<div class="sub-header">
 		<table>
-			<tr><td class="lbl">Expected:</td><td class="val highlight">{data.expected} (<em>{data.expectedIn}</em>)</td></tr>
+			<tr>
+				<td class="lbl">Expected:</td>
+				<td class="val highlight {data.status}">{data.expected} (<em>{data.expectedIn}</em>)
+				</td>
+			</tr>
 			<tr><td class="lbl">Picked up:</td><td class="val">{data.pickupDate} ({data.pickupAgo})</td></tr>
 		</table>
 	</div>

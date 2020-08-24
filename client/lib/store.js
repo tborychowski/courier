@@ -75,7 +75,11 @@ function remapFields (data) {
 			_data.pickupAgo = '?';
 		}
 
-		if (data.trackings.expected_delivery) {
+		if (_data.status === 'Delivered') {
+			_data.expected = '';
+			_data.expectedIn = 'delivered';
+		}
+		else if (data.trackings.expected_delivery) {
 			const d = new Date(data.trackings.expected_delivery);
 			_data.expected = d.toDateString();
 
