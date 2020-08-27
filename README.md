@@ -9,6 +9,9 @@ Heavily inspired by [ParcelPony](https://github.com/fireshaper/parcelpony).
 
 ## TODO
 - [ ] edit tracking?
+- [ ] don't reload on "delete", just remove item from the list
+- [ ] don't reload on on "add" - add item immediately, then reload in bg
+- [ ] maybe add "force reload" option to invalidate cache?
 
 
 
