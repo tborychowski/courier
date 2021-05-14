@@ -80,7 +80,8 @@ function remapFields (data) {
 			_data.expectedIn = 'delivered';
 		}
 		else if (data.trackings.expected_delivery) {
-			const d = new Date(data.trackings.expected_delivery);
+			const [yr, mo, day] = (data.trackings?.expected_delivery || '').split('-');
+			const d = new Date(yr, mo - 1, day);
 			_data.expected = d.toDateString();
 
 			const today = new Date();
