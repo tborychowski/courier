@@ -2,7 +2,7 @@ node_modules/
 _stuff/
 public/
 logs/
-cache/
+cache/*.json
 
 
 .DS_Store
