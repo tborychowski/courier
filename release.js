@@ -114,22 +114,12 @@ function release () {
 			spinner.text = `Update ${chalk.cyan('pushed')} to Github.`;
 			spinner.succeed();
 
-			spinner.text = 'Building a docker image...';
+			spinner.text = 'Building & pushing a docker image...';
 			spinner.start();
+			const platforms = 'linux/arm/v7,linux/arm64/v8,linux/amd64';
 			const tagLatest = `tborychowski/${APP.name}:latest`;
 			const tagVersion = `tborychowski/${APP.name}:${APP.version}`;
-			return run(`docker build --no-cache -t ${tagLatest} -t ${tagVersion} .`);
-		})
-		.then(() => {
-			spinner.text = 'Built a ' + chalk.cyan('docker image');
-			spinner.succeed();
-
-			spinner.text = 'Pushing images to the docker hub...';
-			spinner.start();
-
-			const cmd = `docker push tborychowski/${APP.name}:latest && ` +
-				`docker push tborychowski/${APP.name}:${APP.version}`;
-			return run(cmd).catch(() => {});
+			return run(`docker buildx build --push --platform ${platforms}  -t ${tagLatest} -t ${tagVersion} .`);
 		})
 		.then(() => {
 			spinner.text = 'Images pushed to ' + chalk.cyan('docker hub');
