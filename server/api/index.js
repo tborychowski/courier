@@ -3,16 +3,19 @@ const api = express.Router();
 const {logger, get, post, del} = require('../lib');
 
 const AUTH = { Authorization: 'Bearer ' + process.env.TOKEN };
+const msgMap = {
+	401: 'Auth token is invalid.',
+	409: 'Parcel is already added.',
+	429: 'Too many requests. Please wait 10 seconds and try again.',
+	500: 'Internal server error.'
+};
 
 function catchError (e, res) {
 	const code = e && e.response && e.response.status || 500;
-	const msgMap = {
-		401: 'Auth token is invalid.',
-		409: 'Parcel is already added.',
-		429: 'Too many requests. Please wait 10 seconds and try again.',
-		500: 'Internal server error.'
-	};
-	const msg = msgMap[code] || e.response.statusText;
+	let msg = msgMap[code] || e.response.statusText;
+	if (e.response.data && e.response.data.meta && e.response.data.meta.message && e.response.data.meta.message.length > 0) {
+		msg += `: ${ e.response.data.meta.message.join('. ') }`;
+	}
 	logger.error(msg);
 	res.status(code).json({ code, msg });
 }
