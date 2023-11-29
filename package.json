@@ -13,7 +13,7 @@
 		"start": "run-p start:client start:server"
 	},
 	"dependencies": {
-		"axios": "^0.20.0",
+		"axios": "0.22.x",
 		"body-parser": "^1.19.0",
 		"connect-livereload": "^0.6.1",
 		"dotenv": "^8.2.0",
